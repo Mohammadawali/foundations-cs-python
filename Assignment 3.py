@@ -2,7 +2,8 @@ def main():
     # Prompt for the user's name
     name = input("Enter your name: ")
     print(f"Welcome, {name}!")
-
+    
+main()
 
 
 def add_matrices():
@@ -10,6 +11,8 @@ def add_matrices():
     # Prompt the user for the number of rows and columns
     rows = int(input("Enter number of rows: "))
     columns = int(input("Enter number of columns: "))
+    
+    
     # Initialize two matrices with zeros
     matrix1 = []
     matrix2 = []
@@ -49,9 +52,44 @@ def check_rotation():
     # Function to check rotation
     pass
 
+# Function to invert a dictionary
 def invert_dictionary():
-    # Function to invert a dictionary
-    pass
+    original_dict = {}
+    inverted_dict = {}
+
+    # Input key-value pairs for the dictionary
+    while True:
+        key = input("Enter a key (or press Enter to finish): ")
+        if not key:
+            break
+        value = input(f"Enter the value for key '{key}': ")
+
+        if value in inverted_dict:
+            if isinstance(inverted_dict[value], list):
+                inverted_dict[value].append(key)
+            else:
+                inverted_dict[value] = [inverted_dict[value], key]
+        else:
+            inverted_dict[value] = key
+        original_dict[key] = value
+
+    print("Before inverting:")
+    print(original_dict)
+    
+    # Invert the dictionary and handle multiple keys for the same value
+    inverted_dict = {}
+    for key, value in original_dict.items():
+        if value in inverted_dict:
+            if isinstance(inverted_dict[value], list):
+                inverted_dict[value].append(key)
+            else:
+                inverted_dict[value] = [inverted_dict[value], key]
+        else:
+            inverted_dict[value] = key
+
+    print("After inverting:")
+    print(inverted_dict)
+
 
 def convert_matrix_to_dictionary():
     # Function to convert a matrix to a dictionary
