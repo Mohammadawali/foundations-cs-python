@@ -3,12 +3,47 @@ def main():
     name = input("Enter your name: ")
     print(f"Welcome, {name}!")
 
-# Call the main function
-main()
+
 
 def add_matrices():
     # Function to add matrices
-    pass
+    # Prompt the user for the number of rows and columns
+    rows = int(input("Enter number of rows: "))
+    columns = int(input("Enter number of columns: "))
+    # Initialize two matrices with zeros
+    matrix1 = []
+    matrix2 = []
+    # Prompt the user to enter elements for the first matrix
+    print("Enter elements for the first matrix:")
+    for i in range(rows):
+        row = []
+        for j in range(columns):
+            element = int(input(f"Enter element at position ({i+1}, {j+1}): "))
+            row.append(element)
+        matrix1.append(row)
+
+    # Prompt the user to enter elements for the second matrix
+    print("Enter elements for the second matrix:")
+    for i in range(rows):
+        row = []
+        for j in range(columns):
+            element = int(input(f"Enter element at position ({i+1}, {j+1}): "))
+            row.append(element)
+        matrix2.append(row)
+
+    # Add the two matrices
+    result_matrix = []
+    for i in range(rows):
+        row = []
+        for j in range(columns):
+            element = matrix1[i][j] + matrix2[i][j]
+            row.append(element)
+        result_matrix.append(row)
+
+    # Display the result matrix
+    print("Resultant Matrix:")
+    for row in result_matrix:
+        print(row)
 
 def check_rotation():
     # Function to check rotation
