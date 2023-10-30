@@ -1,6 +1,6 @@
-
+# Function to add matrices
 def add_matrices():
-    # Function to add matrices
+    
     # Prompt the user for the number of rows and columns
     rows = int(input("Enter number of rows: "))
     columns = int(input("Enter number of columns: "))
@@ -88,9 +88,25 @@ def convert_matrix_to_dictionary():
     # Function to convert a matrix to a dictionary
     pass
 
-def check_palindrome():
+
     # Function to check if a string is a palindrome
-    pass
+def check_palindrome():
+    
+    # Prompt for string
+    s = input("Enter a string: ")
+
+    # Reverse the string
+    reversed_s = s[::-1]
+
+    # Display original and reversed strings
+    print("Original string:", s)
+    print("Reversed string:", reversed_s)
+
+    # Check if palindrome
+    if s == reversed_s:
+        print("The string is a palindrome")
+    else:
+        print("The string is not a palindrome")
 
 def search_element_and_merge_sort():
     # Function to search for an element and perform merge sort
@@ -131,3 +147,4 @@ while True:
         break
     else:
         print("Invalid choice. Please enter a number between 1 and 7.")
+
