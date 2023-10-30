@@ -1,10 +1,3 @@
-def main():
-    # Prompt for the user's name
-    name = input("Enter your name: ")
-    print(f"Welcome, {name}!")
-    
-main()
-
 
 def add_matrices():
     # Function to add matrices
@@ -102,6 +95,12 @@ def check_palindrome():
 def search_element_and_merge_sort():
     # Function to search for an element and perform merge sort
     pass
+def main():
+    # Prompt for the user's name
+    name = input("Enter your name: ")
+    print(f"Welcome, {name}!")
+    
+main()
 
 while True:
     # Display the main menu
@@ -132,4 +131,3 @@ while True:
         break
     else:
         print("Invalid choice. Please enter a number between 1 and 7.")
-
