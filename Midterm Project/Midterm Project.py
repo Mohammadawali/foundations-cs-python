@@ -6,6 +6,8 @@ def switchTab ():
     pass
 def displayAllTabs ():
     pass
+def openNastedTab ():
+    pass
 def clearAllTabs():
     pass
 def saveTabs():
