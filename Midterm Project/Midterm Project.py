@@ -8,3 +8,7 @@ def displayAllTabs ():
     pass
 def clearAllTabs():
     pass
+def saveTabs():
+    pass
+def importTabs():
+    pass
