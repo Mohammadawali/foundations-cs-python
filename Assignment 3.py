@@ -40,10 +40,48 @@ def add_matrices():
     print("Resultant Matrix:")
     for row in result_matrix:
         print(row)
-
-def check_rotation():
+        
     # Function to check rotation
-    pass
+    
+def check_rotation():
+    
+    # Prompt for matrix X
+    rows_x = int(input("Enter the number of rows in matrix X: "))
+    cols_x = int(input("Enter the number of columns in matrix X: "))
+    matrix_x = []
+
+    print("Enter matrix X:")
+    for i in range(rows_x):
+        row = input().split()
+        matrix_x.append(row)
+
+    # Prompt for matrix Y
+    rows_y = int(input("Enter the number of rows in matrix Y: "))
+    cols_y = int(input("Enter the number of columns in matrix Y: "))
+    matrix_y = []
+
+    print("Enter matrix Y:")
+    for i in range(rows_y):
+        row = input().split()
+        matrix_y.append(row)
+
+    # Check rotation
+    if cols_x == rows_y and rows_x == cols_y:
+        rotated_x = [[matrix_x[j][i] for j in range(rows_x)] for i in range(cols_x)]
+        if rotated_x == matrix_y:
+            print("Matrix X is the rotation of matrix Y")
+        else:
+            print("Matrix X is not the rotation of matrix Y")
+
+        print("Original matrix X:")
+        for row in matrix_x:
+            print(" ".join(row))
+
+        print("Rotated matrix X:")
+        for row in rotated_x:
+            print(" ".join(row))
+    else:
+        print("Matrix X is not the rotation of matrix Y")
 
 # Function to invert a dictionary
 def invert_dictionary():
@@ -83,10 +121,34 @@ def invert_dictionary():
     print("After inverting:")
     print(inverted_dict)
 
+    # Function to convert a matrix to a dictionary
 
 def convert_matrix_to_dictionary():
-    # Function to convert a matrix to a dictionary
-    pass
+    matrix = []
+
+    # Prompt for matrix size
+    rows = int(input("Enter the number of users: "))
+
+    # Prompt for user data
+    for i in range(rows):
+        first_name = input("Enter the first name: ")
+        last_name = input("Enter the last name: ")
+        user_id = input("Enter the ID: ")
+        job_title = input("Enter the job title: ")
+        company = input("Enter the company: ")
+
+        user_data = [first_name, last_name, job_title, company]
+        matrix.append([user_id] + user_data)
+
+    # Convert matrix to dictionary
+    user_dict = {row[0]: row[1:] for row in matrix}
+   
+    user_dict = convert_matrix_to_dictionary()
+    print(user_dict)
+
+    return user_dict
+
+
 
 
     # Function to check if a string is a palindrome
