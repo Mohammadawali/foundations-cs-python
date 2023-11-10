@@ -6,3 +6,5 @@ def switchTab ():
     pass
 def displayAllTabs ():
     pass
+def clearAllTabs():
+    pass
