@@ -12,3 +12,5 @@ def saveTabs():
     pass
 def importTabs():
     pass
+def exit():
+    pass
