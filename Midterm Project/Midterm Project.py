@@ -1,5 +1,15 @@
+import json
+
+tabs = []
+
+#Function to open new tab 
 def openTab ():
-    pass
+    title = input("Enter The Title of Wepsite: ")
+    url = input("Enter The URL: ")
+    newTab = {"Title": title, "URL": url, "Nested": []}
+    tabs.append(newTab)
+    print(f"Tab '{title}'opened successfully.")
+    
 def closeTab ():
     pass
 def switchTab ():
@@ -15,9 +25,10 @@ def saveTabs():
 def importTabs():
     pass
 def exit():
-    pass
-def displayMenu():
+    print("Exiting ")
     
+def displayMenu():
+    print("-----------------------------------")
     print("Welcome to FCS Browser Tabs Simulation")
     print("1. Open Tab")
     print("2. Close Tab")
