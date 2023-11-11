@@ -6,7 +6,7 @@ tabs = []
 def openTab ():
     title = input("Enter The Title of Wepsite: ")
     url = input("Enter The URL: ")
-    newTab = {"Title": title, "URL": url, "Nested": []}
+    newTab = {"Title": title, "URL": url, "NestedTabs": []}
     tabs.append(newTab)
     print(f"Tab '{title}'opened successfully.")
  #Function to close tab    
@@ -48,10 +48,30 @@ def switchTab ():
                 print("Invalid tab index.")
         
     
-def displayAllTabs ():
-    pass
+def displayAllTabs (tabs_list, depth=0):#depth parameter is used to keep track of the nesting level of the tabs. It is incremented by 1 each time the function is called recursively for nested tabs.
+    
+    if not tabs_list:
+        return
+    for i, tab in enumerate(tabs_list):#enumerate function in Python is used to iterate over a sequence (such as a list, tuple, or string) https://www.geeksforgeeks.org/enumerate-in-python/
+        print("  " * depth + f"{i + 1}. {tab['Title']}")
+        displayAllTabs(tab['NestedTabs'], depth + 1)
+    
+
 def openNastedTab ():
-    pass
+    
+    index = input("Enter the index of the parent tab where you want to insert  tabs: ")
+    index = int(index)
+    
+    if 0 <= index < len(tabs):
+            title = input("Enter the Title of the nested website: ")
+            url = input("Enter the URL: ")
+            new_nested_tab = {'Title': title, 'URL': url, 'NestedTabs': []}
+            tabs[index]['NestedTabs'].append(new_nested_tab)
+            print(f"Nested tab '{title}' opened successfully.")
+    else:
+            print("Invalid parent tab index.")
+    
+    
 #Function to clear all tab
 def clearAllTabs():
     tabs.clear()
@@ -61,6 +81,7 @@ def saveTabs():
     pass
 def importTabs():
     pass
+
 def exit():
     print("Exiting ")
     
