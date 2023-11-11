@@ -9,9 +9,23 @@ def openTab ():
     newTab = {"Title": title, "URL": url, "Nested": []}
     tabs.append(newTab)
     print(f"Tab '{title}'opened successfully.")
-    
+ #Function to close tab    
 def closeTab ():
-    pass
+    index = input("Enter the index of tab to close or Press Enter to close the last tab : ")
+    if index == " ":
+        if tabs:
+            closed_tab = tabs.pop()#The pop() method removes the element at the specified position.https://www.w3schools.com/python/ref_list_pop.asp
+            print(f"Closed tab: '{closed_tab['Title']}'")
+        else:
+            print("No tabs to close.")
+    else:
+            index = int(index)
+            if 0 <= index < len(tabs):
+                closed_tab = tabs.pop(index)
+                print(f"Closed tab: '{closed_tab['Title']}'")
+            else:
+                print("Invalid tab index.")
+                
 def switchTab ():
     pass
 def displayAllTabs ():
