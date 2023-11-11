@@ -26,8 +26,28 @@ def closeTab ():
             else:
                 print("Invalid tab index.")
                 
+                
+# Function to switch to a tab                
 def switchTab ():
-    pass
+    index = input("Enter the index of the tab to switch to (Press Enter to switch to the last tab): ")
+    if index == '':
+        if tabs:
+            current_tab = tabs[-1]
+            print(f"Switched to tab: '{current_tab['Title']}'")
+            print(f"Displaying content of URL: {current_tab['URL']}")
+        else:
+            print("No tabs to switch to.")
+    else:
+        
+            index = int(index)
+            if 0 <= index < len(tabs):
+                current_tab = tabs[index]
+                print(f"Switched to tab: '{current_tab['Title']}'")
+                print(f"Displaying content of URL: {current_tab['URL']}")
+            else:
+                print("Invalid tab index.")
+        
+    
 def displayAllTabs ():
     pass
 def openNastedTab ():
