@@ -52,8 +52,11 @@ def displayAllTabs ():
     pass
 def openNastedTab ():
     pass
+#Function to clear all tab
 def clearAllTabs():
-    pass
+    tabs.clear()
+    print("All tabs cleared.")
+    
 def saveTabs():
     pass
 def importTabs():
