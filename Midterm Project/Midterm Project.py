@@ -12,7 +12,7 @@ def openTab ():
  #Function to close tab    
 def closeTab ():
     index = input("Enter the index of tab to close or Press Enter to close the last tab : ")
-    if index == " ":
+    if index == '':
         if tabs:
             closed_tab = tabs.pop()#The pop() method removes the element at the specified position.https://www.w3schools.com/python/ref_list_pop.asp
             print(f"Closed tab: '{closed_tab['Title']}'")
