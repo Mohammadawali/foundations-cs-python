@@ -17,11 +17,10 @@ def fetch_html_content(url):
 #Function to open new tab 
 def open_tab ():
     title = input("Enter The Title of Wepsite : ")
-    url = input("Enter The URL example (https://www.google.com): ")
-    #Check if the url start withe https:// and www.
-    if not (url.startswith("https://") and "www." in url):
-        print("invalid URL. please make URl start withe https:// and www. ")
-        return
+    url = input("Enter The URL example (www.google.com): ")
+    #Check if the url start withe https:// 
+    if not url.startswith("https://"):
+        url = "https://" + url
      
     html_content = fetch_html_content(url)
         
