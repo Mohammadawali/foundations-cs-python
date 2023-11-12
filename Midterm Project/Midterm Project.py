@@ -14,19 +14,36 @@ def fetch_html_content(url):
     response.raise_for_status()
     return response.text
 
-#Function to open new tab 
+#Function to open new tab
+#https://www.honeybadger.io/blog/a-guide-to-exception-handling-in-python/ 
 def open_tab ():
-    title = input("Enter The Title of Wepsite : ")
-    url = input("Enter The URL example (www.google.com): ")
-    #Check if the url start withe https:// 
-    if not url.startswith("https://"):
-        url = "https://" + url
+    while True:    
+        try:
+            title = input("Enter The Title of Wepsite : ")
+            if not title:
+                raise ValueError("Title cannot be empty.")
+            
+            url = input("Enter The URL example (www.google.com): ")
+            if not url:
+                raise ValueError("Url cannot be empty.")
+            
+#Check if the url start withe https:// 
+
+            if not url.startswith("https://"):
+                url = "https://" + url
      
-    html_content = fetch_html_content(url)
+            html_content = fetch_html_content(url)
+            if html_content is not None:
+                newTab = {"Title": title, "URL": url,"HTMLContent": html_content, "NestedTabs": []}
+                tabs.append(newTab)
+                print(f"Tab '{title}'opened successfully.")
+                
+                break
+            else:
+                print("Faild to open the tab Check the Url")
+        except ValueError as ve:
+            print(f"Error: {ve}")
         
-    newTab = {"Title": title, "URL": url,"HTMLContent": html_content, "NestedTabs": []}
-    tabs.append(newTab)
-    print(f"Tab '{title}'opened successfully.")
     
  #Function to close tab by enter the index of tab .if not close last tab by press Enter   
 def close_tab ():
