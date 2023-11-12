@@ -9,6 +9,11 @@ import requests
 #managing  tabs in a list called tabs
 tabs = []
 
+def fetch_html_content(url):
+    response = requests.get(url)
+    response.raise_for_status()
+    return response.text
+
 #Function to open new tab 
 def open_tab ():
     title = input("Enter The Title of Wepsite : ")
@@ -16,9 +21,11 @@ def open_tab ():
     #Check if the url start withe https:// and www.
     if not (url.startswith("https://") and "www." in url):
         print("invalid URL. please make URl start withe https:// and www. ")
-        return 
+        return
+     
+    html_content = fetch_html_content(url)
         
-    newTab = {"Title": title, "URL": url, "NestedTabs": []}
+    newTab = {"Title": title, "URL": url,"HTMLContent": html_content, "NestedTabs": []}
     tabs.append(newTab)
     print(f"Tab '{title}'opened successfully.")
     
@@ -107,6 +114,10 @@ def clear_all_tabs():
 def save_tabs():
     
     file_path = input("Enter the file path to save the tabs: ")
+    #Creat a list to store tab data
+    tab_data = []
+    for tab in tabs:
+        tab_data.append({"Title": tab["Title"],"URL": tab["URL"],"HTMlContent": tab["HTMLContent"],"NestedTabs": tab["NestedTabs"]})
 
     try:
         with open(file_path, 'w') as file:#'w' write
