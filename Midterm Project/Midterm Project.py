@@ -85,7 +85,13 @@ def saveTabs():
     print("Tabs saved to file successfully.")
     
 def importTabs():
-    pass
+    file_path = input("Enter the file path to import tabs from: ")
+    
+    with open(file_path, 'r') as file:
+            tabs = json.load(file)
+    print("Tabs imported from file successfully.")
+    return tabs
+
 
 def exit():
     print("Exiting ")
@@ -107,7 +113,7 @@ def displayMenu():
 def main():
     while True:
         displayMenu()
-        choice = input("Enter your choice")
+        choice = input("Enter your choice: ")
         if choice == '1':
             openTab()
         elif choice == '2':
