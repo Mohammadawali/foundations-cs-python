@@ -51,6 +51,7 @@ def switchTab ():
 def displayAllTabs (tabs_list, depth=0):#depth parameter is used to keep track of the nesting level of the tabs. It is incremented by 1 each time the function is called recursively for nested tabs.
     
     if not tabs_list:
+        print("No Tabs To Display")
         return
     for i, tab in enumerate(tabs_list):#enumerate function in Python is used to iterate over a sequence (such as a list, tuple, or string) https://www.geeksforgeeks.org/enumerate-in-python/
         print("  " * depth + f"{i + 1}. {tab['Title']}")
@@ -121,7 +122,7 @@ def main():
         elif choice == '3':
             switchTab()
         elif choice == '4':
-            displayAllTabs()
+            displayAllTabs(tabs)
         elif choice == '5':
             openNastedTab()
         elif choice == '6':
