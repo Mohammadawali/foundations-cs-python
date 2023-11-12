@@ -75,7 +75,7 @@ def display_html_context(url):
  #Function to display parent tab and nested tab   
 def display_all_tabs (tabs_list, depth=0):#depth parameter is used to keep track of the nesting level of the tabs. It is incremented by 1 each time the function is called recursively for nested tabs.
     
-    if not tabs_list:
+    if not tabs_list and depth == 0:
         print("No Tabs To Display")
         return
     for i, tab in enumerate(tabs_list):#enumerate function in Python is used to iterate over a sequence (such as a list, tuple, or string) https://www.geeksforgeeks.org/enumerate-in-python/
