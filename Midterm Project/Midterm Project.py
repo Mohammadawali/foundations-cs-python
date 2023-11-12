@@ -11,8 +11,8 @@ tabs = []
 
 #Function to open new tab 
 def open_tab ():
-    title = input("Enter The Title of Wepsite: ")
-    url = input("Enter The URL: ")
+    title = input("Enter The Title of Wepsite : ")
+    url = input("Enter The URL example (https://www.google.com): ")
     #Check if the url start withe https:// and www.
     if not (url.startswith("https://") and "www." in url):
         print("invalid URL. please make URl start withe https:// and www. ")
