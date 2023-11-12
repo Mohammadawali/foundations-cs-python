@@ -6,6 +6,7 @@ import json
 #https://www.w3schools.com/python/module_requests.asp
 import requests
 
+#managing  tabs in a list called tabs
 tabs = []
 
 #Function to open new tab 
@@ -21,7 +22,7 @@ def open_tab ():
     tabs.append(newTab)
     print(f"Tab '{title}'opened successfully.")
     
- #Function to close tab    
+ #Function to close tab by enter the index of tab .if not close last tab by press Enter   
 def close_tab ():
     index = input("Enter the index of tab to close or Press Enter to close the last tab : ")
     if index == '':
@@ -60,6 +61,8 @@ def switch_tab ():
             else:
                 print("Invalid tab index.")
                 
+            
+#display html content by requests module               
 def display_html_context(url):
     #Make an HTTP Get request to the url 
     response = requests.get(url)
@@ -69,7 +72,7 @@ def display_html_context(url):
     #Return the content of the response when make http request using request.get
     print(response.text)
            
-    
+ #Function to display parent tab and nested tab   
 def display_all_tabs (tabs_list, depth=0):#depth parameter is used to keep track of the nesting level of the tabs. It is incremented by 1 each time the function is called recursively for nested tabs.
     
     if not tabs_list:
@@ -79,7 +82,7 @@ def display_all_tabs (tabs_list, depth=0):#depth parameter is used to keep track
         print("  " * depth + f"{i + 1}. {tab['Title']}")
         display_all_tabs(tab['NestedTabs'], depth + 1)
     
-
+#Function creat tabs in parent tab 
 def open_nasted_tab ():
     
     index = input("Enter the index of the parent tab where you want to insert  tabs: ")
@@ -99,14 +102,15 @@ def open_nasted_tab ():
 def clear_all_tabs():
     tabs.clear()
     print("All tabs cleared.")
-    
+
+#Function to save tabs in JSON file    
 def save_tabs():
     
     file_path = input("Enter the file path to save the tabs: ")
 
     try:
-        with open(file_path, 'w') as file:
-            json.dump(tabs, file, indent=2)
+        with open(file_path, 'w') as file:#'w' write
+            json.dump(tabs, file, indent=2)#Write — json.dump()
         print("Tabs saved to file successfully.")
     except FileNotFoundError:
         print(f"Error: The specified path '{file_path}' is not valid. Please provide a valid path.")
@@ -114,15 +118,16 @@ def save_tabs():
         print(f"Error: Permission denied. Check if you have the necessary permissions to write to the specified file.")
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
-    
+ 
+#Function to import tabs from JSON file   
 def import_tabs():
     global tabs
     
     file_path = input("Enter the file path to import tabs from: ")
     
     try:
-        with open(file_path, 'r') as file:
-            tabs = json.load(file)
+        with open(file_path, 'r') as file:#'r' read
+            tabs = json.load(file)#Write — json.dump()
         print("Tabs imported from file successfully.")
     except FileNotFoundError:
         print(f"Error: File not found at '{file_path}'. Please check the file path and try again.")
