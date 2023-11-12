@@ -10,9 +10,14 @@ tabs = []
 def open_tab ():
     title = input("Enter The Title of Wepsite: ")
     url = input("Enter The URL: ")
+    #Check if the url start withe https:// and www.
+    if not (url.startswith("https://") and "www." in url):
+        print("invalid URL. please make URl start withe https:// and www. ")
+        
     newTab = {"Title": title, "URL": url, "NestedTabs": []}
     tabs.append(newTab)
     print(f"Tab '{title}'opened successfully.")
+    
  #Function to close tab    
 def close_tab ():
     index = input("Enter the index of tab to close or Press Enter to close the last tab : ")
