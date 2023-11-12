@@ -106,19 +106,54 @@ def display_all_tabs (tabs_list, depth=0):#depth parameter is used to keep track
         display_all_tabs(tab['NestedTabs'], depth + 1)
     
 #Function creat tabs in parent tab 
-def open_nasted_tab ():
+def open_nested_tab ():
     
-    index = input("Enter the index of the parent tab where you want to insert  tabs: ")
-    index = int(index)
-    
-    if 0 <= index < len(tabs):
-            title = input("Enter the Title of the nested website: ")
-            url = input("Enter the URL: ")
-            new_nested_tab = {'Title': title, 'URL': url, 'NestedTabs': []}
-            tabs[index]['NestedTabs'].append(new_nested_tab)
-            print(f"Nested tab '{title}' opened successfully.")
+    # Check if there are any tabs available
+    if not tabs:
+        print("No parent tabs available to open a nested tab.")
+        return
+
+    # Display existing tabs for reference
+    print("Existing tabs:")
+    display_all_tabs(tabs)
+
+    # Get the index of the parent tab
+    parent_index = input("Enter the index of the parent tab to open a nested tab: ")
+
+    if not parent_index:
+        print("Parent index cannot be empty.")
+        return
+
+    try:
+        parent_index = int(parent_index)
+    except ValueError:
+        print("Invalid input. Please enter a valid index.")
+        return
+
+    # Check if the parent index is valid
+    if 0 <= parent_index < len(tabs):
+        parent_tab = tabs[parent_index]
+
+        # Get information for the new nested tab
+        title = input("Enter the Title of the nested tab: ")
+        url = input("Enter the URL of the nested tab: ")
+
+        # Add "https://" if it doesn't start with it
+        if not url.startswith("https://"):
+            url = "https://" + url
+
+        try:
+            # Fetch HTML content with error handling
+            html_content = fetch_html_content(url)
+        except requests.exceptions.RequestException as e:
+            print(f"Failed to open the nested tab. Error: {e}")
+            return
+
+        new_nested_tab = {'Title': title, 'URL': url, 'HTMLContent': html_content, 'NestedTabs': []}
+        parent_tab['NestedTabs'].append(new_nested_tab)
+        print(f"Nested tab '{title}' opened successfully under parent tab '{parent_tab['Title']}'.")
     else:
-            print("Invalid parent tab index.")
+        print("Invalid parent tab index.")
     
     
 #Function to clear all tab
@@ -197,7 +232,7 @@ def main():
         elif choice == '4':
             display_all_tabs(tabs)
         elif choice == '5':
-            open_nasted_tab()
+            open_nested_tab()
         elif choice == '6':
             clear_all_tabs()
         elif choice == '7':
@@ -210,7 +245,7 @@ def main():
         else:
             print("invalid choice. Please choose a number from Menu. ")
             
-#In Short: It Allows You to Execute Code When the File Runs as a Script,
+#It Allows You to Execute Code When the File Runs as a Script,
 # but Not When It’s Imported as a Module
 #https://realpython.com/if-name-main-python/            
 if __name__ == "__main__":
