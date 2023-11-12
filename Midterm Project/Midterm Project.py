@@ -57,13 +57,13 @@ def switch_tab ():
                 current_tab = tabs[index]
                 print(f"Switched to tab: '{current_tab['Title']}'")
                 print(f"Displaying content of URL: {current_tab['URL']}")
-                display_html_context(current_tab['URL'])
+                display_html_content(current_tab['URL'])
             else:
                 print("Invalid tab index.")
                 
             
 #display html content by requests module               
-def display_html_context(url):
+def display_html_content(url):
     #Make an HTTP Get request to the url 
     response = requests.get(url)
     #Check if request was successful
