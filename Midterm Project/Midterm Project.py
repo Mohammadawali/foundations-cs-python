@@ -1,4 +1,8 @@
 import json
+#The requests module allows you to send HTTP requests using Python.
+# The HTTP request returns a Response Object with all the response data (content, encoding, status, etc).
+#https://www.w3schools.com/python/module_requests.asp
+import requests
 
 tabs = []
 
@@ -10,7 +14,7 @@ def openTab ():
     tabs.append(newTab)
     print(f"Tab '{title}'opened successfully.")
  #Function to close tab    
-def closeTab ():
+def close_tab ():
     index = input("Enter the index of tab to close or Press Enter to close the last tab : ")
     if index == '':
         if tabs:
@@ -44,9 +48,19 @@ def switchTab ():
                 current_tab = tabs[index]
                 print(f"Switched to tab: '{current_tab['Title']}'")
                 print(f"Displaying content of URL: {current_tab['URL']}")
+                display_html_context(current_tab['URL'])
             else:
                 print("Invalid tab index.")
-        
+                
+def display_html_context(url):
+    #Make an HTTP Get request to the url 
+    response = requests.get(url)
+    #Check if request was successful
+    response.raise_for_status()
+    print("HTML content: ")
+    #Return the content of the response when make http request using request.get
+    print(response.text)
+           
     
 def displayAllTabs (tabs_list, depth=0):#depth parameter is used to keep track of the nesting level of the tabs. It is incremented by 1 each time the function is called recursively for nested tabs.
     
@@ -86,6 +100,7 @@ def saveTabs():
     print("Tabs saved to file successfully.")
     
 def importTabs():
+    global tabs
     file_path = input("Enter the file path to import tabs from: ")
     
     with open(file_path, 'r') as file:
@@ -118,7 +133,7 @@ def main():
         if choice == '1':
             openTab()
         elif choice == '2':
-            closeTab()
+            close_tab()
         elif choice == '3':
             switchTab()
         elif choice == '4':
