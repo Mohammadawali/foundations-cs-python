@@ -117,12 +117,22 @@ def save_tabs():
     
 def import_tabs():
     global tabs
+    
     file_path = input("Enter the file path to import tabs from: ")
     
-    with open(file_path, 'r') as file:
+    try:
+        with open(file_path, 'r') as file:
             tabs = json.load(file)
-    print("Tabs imported from file successfully.")
-    return tabs
+        print("Tabs imported from file successfully.")
+    except FileNotFoundError:
+        print(f"Error: File not found at '{file_path}'. Please check the file path and try again.")
+    except json.JSONDecodeError as e:
+        print(f"Error decoding JSON in the file: {e}")
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
+    finally:
+        return tabs
+
 
 
 def exit():
