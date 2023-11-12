@@ -7,7 +7,7 @@ import requests
 tabs = []
 
 #Function to open new tab 
-def openTab ():
+def open_tab ():
     title = input("Enter The Title of Wepsite: ")
     url = input("Enter The URL: ")
     newTab = {"Title": title, "URL": url, "NestedTabs": []}
@@ -32,7 +32,7 @@ def close_tab ():
                 
                 
 # Function to switch to a tab                
-def switchTab ():
+def switch_tab ():
     index = input("Enter the index of the tab to switch to (Press Enter to switch to the last tab): ")
     if index == '':
         if tabs:
@@ -62,17 +62,17 @@ def display_html_context(url):
     print(response.text)
            
     
-def displayAllTabs (tabs_list, depth=0):#depth parameter is used to keep track of the nesting level of the tabs. It is incremented by 1 each time the function is called recursively for nested tabs.
+def display_all_tabs (tabs_list, depth=0):#depth parameter is used to keep track of the nesting level of the tabs. It is incremented by 1 each time the function is called recursively for nested tabs.
     
     if not tabs_list:
         print("No Tabs To Display")
         return
     for i, tab in enumerate(tabs_list):#enumerate function in Python is used to iterate over a sequence (such as a list, tuple, or string) https://www.geeksforgeeks.org/enumerate-in-python/
         print("  " * depth + f"{i + 1}. {tab['Title']}")
-        displayAllTabs(tab['NestedTabs'], depth + 1)
+        display_all_tabs(tab['NestedTabs'], depth + 1)
     
 
-def openNastedTab ():
+def open_nasted_tab ():
     
     index = input("Enter the index of the parent tab where you want to insert  tabs: ")
     index = int(index)
@@ -88,18 +88,18 @@ def openNastedTab ():
     
     
 #Function to clear all tab
-def clearAllTabs():
+def clear_all_tabs():
     tabs.clear()
     print("All tabs cleared.")
     
-def saveTabs():
+def save_tabs():
     
     file_path = input("Enter the file path to save the tabs: ")
     with open(file_path, 'w') as file:
         json.dump(tabs, file, indent=2)
     print("Tabs saved to file successfully.")
     
-def importTabs():
+def import_tabs():
     global tabs
     file_path = input("Enter the file path to import tabs from: ")
     
@@ -131,27 +131,30 @@ def main():
         displayMenu()
         choice = input("Enter your choice: ")
         if choice == '1':
-            openTab()
+            open_tab()
         elif choice == '2':
             close_tab()
         elif choice == '3':
-            switchTab()
+            switch_tab()
         elif choice == '4':
-            displayAllTabs(tabs)
+            display_all_tabs(tabs)
         elif choice == '5':
-            openNastedTab()
+            open_nasted_tab()
         elif choice == '6':
-            clearAllTabs()
+            clear_all_tabs()
         elif choice == '7':
-            saveTabs()
+            save_tabs()
         elif choice == '8':
-            importTabs()
+            import_tabs()
         elif choice == '9':
             exit()
             break
         else:
             print("invalid choice. Please choose a number from Menu. ")
             
+#In Short: It Allows You to Execute Code When the File Runs as a Script,
+# but Not When It’s Imported as a Module
+#https://realpython.com/if-name-main-python/            
 if __name__ == "__main__":
     main()
             
