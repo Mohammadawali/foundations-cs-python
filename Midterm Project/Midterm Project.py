@@ -1,3 +1,5 @@
+#This statement is used to import the json module in Python,
+# which provides methods for encoding and decoding JSON data
 import json
 #The requests module allows you to send HTTP requests using Python.
 # The HTTP request returns a Response Object with all the response data (content, encoding, status, etc).
@@ -13,6 +15,7 @@ def open_tab ():
     #Check if the url start withe https:// and www.
     if not (url.startswith("https://") and "www." in url):
         print("invalid URL. please make URl start withe https:// and www. ")
+        return 
         
     newTab = {"Title": title, "URL": url, "NestedTabs": []}
     tabs.append(newTab)
@@ -100,9 +103,17 @@ def clear_all_tabs():
 def save_tabs():
     
     file_path = input("Enter the file path to save the tabs: ")
-    with open(file_path, 'w') as file:
-        json.dump(tabs, file, indent=2)
-    print("Tabs saved to file successfully.")
+
+    try:
+        with open(file_path, 'w') as file:
+            json.dump(tabs, file, indent=2)
+        print("Tabs saved to file successfully.")
+    except FileNotFoundError:
+        print(f"Error: The specified path '{file_path}' is not valid. Please provide a valid path.")
+    except PermissionError:
+        print(f"Error: Permission denied. Check if you have the necessary permissions to write to the specified file.")
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
     
 def import_tabs():
     global tabs
