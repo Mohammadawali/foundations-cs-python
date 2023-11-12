@@ -64,9 +64,18 @@ def close_tab ():
                 
                 
 # Function to switch to a tab                
-def switch_tab ():
+def switch_tab():
+    if not tabs:
+        print("No tabs available to switch.")
+        return
+
+    # Display existing tabs for reference
+    print("Existing tabs:")
+    display_all_tabs(tabs)
+
     index = input("Enter the index of the tab to switch to (Press Enter to switch to the last tab): ")
-    if index == '':
+
+    if not index:
         if tabs:
             current_tab = tabs[-1]
             print(f"Switched to tab: '{current_tab['Title']}'")
@@ -74,15 +83,19 @@ def switch_tab ():
         else:
             print("No tabs to switch to.")
     else:
-        
+        try:
             index = int(index)
-            if 0 <= index < len(tabs):
-                current_tab = tabs[index]
-                print(f"Switched to tab: '{current_tab['Title']}'")
-                print(f"Displaying content of URL: {current_tab['URL']}")
-                display_html_content(current_tab['URL'])
-            else:
-                print("Invalid tab index.")
+        except ValueError:
+            print("Invalid input. Please enter a valid index.")
+            return
+
+        if 0 <= index < len(tabs):
+            current_tab = tabs[index]
+            print(f"Switched to tab: '{current_tab['Title']}'")
+            print(f"Displaying content of URL: {current_tab['URL']}")
+            display_html_content(current_tab['URL'])
+        else:
+            print("Invalid tab index.")
                 
             
 #display html content by requests module               
